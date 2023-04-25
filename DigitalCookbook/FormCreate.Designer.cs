@@ -37,7 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRecipeName = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.picIsFavorite = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).BeginInit();
             this.SuspendLayout();
             // 
             // rchSteps
@@ -57,6 +59,7 @@
             this.chkIsFavorited.TabIndex = 15;
             this.chkIsFavorited.Text = "Is Favorited";
             this.chkIsFavorited.UseVisualStyleBackColor = true;
+            this.chkIsFavorited.CheckedChanged += new System.EventHandler(this.chkIsFavorited_CheckedChanged);
             // 
             // btnCreate
             // 
@@ -119,11 +122,23 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // picIsFavorite
+            // 
+            this.picIsFavorite.Image = global::DigitalCookbook.Images.favorite_icon;
+            this.picIsFavorite.Location = new System.Drawing.Point(396, 12);
+            this.picIsFavorite.Name = "picIsFavorite";
+            this.picIsFavorite.Size = new System.Drawing.Size(62, 62);
+            this.picIsFavorite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picIsFavorite.TabIndex = 17;
+            this.picIsFavorite.TabStop = false;
+            this.picIsFavorite.Visible = false;
+            // 
             // FormCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 493);
+            this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.rchSteps);
             this.Controls.Add(this.chkIsFavorited);
             this.Controls.Add(this.btnCreate);
@@ -137,7 +152,9 @@
             this.MaximizeBox = false;
             this.Name = "FormCreate";
             this.Text = "Digital Cookbook - Add a Recipe";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCreate_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +171,6 @@
         private Label label1;
         private TextBox txtRecipeName;
         private OpenFileDialog openFileDialog1;
+        private PictureBox picIsFavorite;
     }
 }

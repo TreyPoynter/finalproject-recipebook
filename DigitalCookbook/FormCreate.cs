@@ -12,14 +12,22 @@ namespace DigitalCookbook
 {
     public partial class FormCreate : Form
     {
-        Image? image;
+        private Image? image;
         private bool xButton = true;
-        RecipeCard newRecipeCard;
         public FormCreate()
         {
             InitializeComponent();
+            Point pos = picIsFavorite.Parent.PointToScreen(picIsFavorite.Location);
+            pos = picRecipeImage.PointToClient(pos);
+            picIsFavorite.Parent = picRecipeImage;
+            picIsFavorite.Location = pos;
+            picIsFavorite.BackColor = Color.Transparent;
         }
-
+        private void FormCreate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (xButton)
+                Application.Exit();
+        }
         private void btnImageSelector_Click(object sender, EventArgs e)
         {
             image = ShowFileDiaglog();
@@ -32,9 +40,15 @@ namespace DigitalCookbook
         {
             if (ValidateRecipe())
             {
-                newRecipeCard = CreateRecipeCard();
+                RecipeCard newRecipeCard = CreateRecipeCard();
+                BackToMainMenu(newRecipeCard);
             }
         }
+        private void chkIsFavorited_CheckedChanged(object sender, EventArgs e)
+        {
+            picIsFavorite.Visible = chkIsFavorited.Checked;
+        }
+
         private Image? ShowFileDiaglog()
         {
             Image? image = null;
@@ -70,7 +84,6 @@ namespace DigitalCookbook
             }
             return true;
         }
-
         public RecipeCard CreateRecipeCard()
         {
             string[] steps = rchSteps.Text.Split("\n");
@@ -90,7 +103,17 @@ namespace DigitalCookbook
             formRecipes.Show();
             Close();
         }
+        private void BackToMainMenu(RecipeCard recipeCard)
+        {
+            FormRecipes formRecipes = new FormRecipes(recipeCard);
+            xButton = false;
+            formRecipes.Tag = this;
+            formRecipes.StartPosition = FormStartPosition.Manual;
+            formRecipes.Location = Location;
+            formRecipes.Show();
+            Close();
+        }
 
-        
+
     }
 }

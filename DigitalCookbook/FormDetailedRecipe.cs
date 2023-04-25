@@ -70,5 +70,10 @@ namespace DigitalCookbook
         {
             rtbSteps.Text = $"Step {_currentStep + 1} : {_recipe.Steps[_currentStep]}";
         }
+
+        private void FormDetailedRecipe_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

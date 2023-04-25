@@ -136,10 +136,11 @@
             this.Controls.Add(this.lblRecipeName);
             this.Controls.Add(this.picRecipeImage);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDetailedRecipe";
             this.Text = "FormDetailedRecipe";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDetailedRecipe_FormClosing);
+            this.Load += new System.EventHandler(this.FormDetailedRecipe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).EndInit();
             this.ResumeLayout(false);
