@@ -37,7 +37,10 @@ namespace DigitalCookbook
             chkIsFavorited.Checked = _recipe.IsFavorited;
             foreach (string step in _recipe.Steps.Split("~~"))
             {
-                rchSteps.Text += $"{step}\n";
+                if (step != string.Empty)
+                {
+                    rchSteps.Text += $"{step}\n";
+                }
             }
         }
         private void FormEdit_FormClosing(object sender, FormClosingEventArgs e)
@@ -59,18 +62,17 @@ namespace DigitalCookbook
         {
             if (ValidateFields())
             {
-                Recipe? updatedRecipe = recipeDB.Recipes.Find(recipeID);
+                _recipe = recipeDB.Recipes.Find(recipeID);
 
-                if (updatedRecipe != null)
+                if (_recipe != null)
                 {
-                    updatedRecipe.RecipeName = txtRecipeName.Text;
-                    updatedRecipe.IsFavorited= chkIsFavorited.Checked;
-                    updatedRecipe.RecipeImage = ImageToByteArray(recipeImage);
-                    updatedRecipe.Steps = String.Join("~~", rchSteps.Text.Split('\n'));
-                    _recipe = updatedRecipe;
+                    _recipe.RecipeName = txtRecipeName.Text;
+                    _recipe.IsFavorited= chkIsFavorited.Checked;
+                    _recipe.RecipeImage = ImageToByteArray(recipeImage);
+                    _recipe.Steps = String.Join("~~", rchSteps.Text.Split('\n'));
                     try
                     {
-                        recipeDB.Recipes.Update(updatedRecipe);
+                        recipeDB.Recipes.Update(_recipe);
                         recipeDB.SaveChanges();
                     }
                     catch (Exception)
