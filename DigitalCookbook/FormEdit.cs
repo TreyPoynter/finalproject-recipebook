@@ -25,6 +25,11 @@ namespace DigitalCookbook
             recipeImage = recipeToEdit.ByteArrayToImage();
             recipeID = recipeToEdit.RecipeID;
 
+            Point pos = picIsFavorite.Parent.PointToScreen(picIsFavorite.Location);
+            pos = picRecipeImage.PointToClient(pos);
+            picIsFavorite.Parent = picRecipeImage;
+            picIsFavorite.Location = pos;
+            picIsFavorite.BackColor = Color.Transparent;
             rchSteps.Text = String.Empty;
             picRecipeImage.Image = recipeImage;
             picIsFavorite.Visible = _recipe.IsFavorited;
@@ -42,6 +47,7 @@ namespace DigitalCookbook
         }
         private void btnImageSelector_Click(object sender, EventArgs e)
         {
+            recipeImage = ShowFileDiaglog();
             _recipe.RecipeImage = ImageToByteArray(recipeImage);
         }
 
@@ -51,13 +57,37 @@ namespace DigitalCookbook
         }
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            xButton = false;
-            FormDetailedRecipe detailedRecipe = new FormDetailedRecipe(_recipe);
-            detailedRecipe.Tag = this;
-            detailedRecipe.StartPosition = FormStartPosition.Manual;
-            detailedRecipe.Location = Location;
-            detailedRecipe.Show();
-            Close();
+            if (ValidateFields())
+            {
+                Recipe? updatedRecipe = recipeDB.Recipes.Find(recipeID);
+
+                if (updatedRecipe != null)
+                {
+                    updatedRecipe.RecipeName = txtRecipeName.Text;
+                    updatedRecipe.IsFavorited= chkIsFavorited.Checked;
+                    updatedRecipe.RecipeImage = ImageToByteArray(recipeImage);
+                    updatedRecipe.Steps = String.Join("~~", rchSteps.Text.Split('\n'));
+                    _recipe = updatedRecipe;
+                    try
+                    {
+                        recipeDB.Recipes.Update(updatedRecipe);
+                        recipeDB.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error saving recipe changes");
+                    }
+                }
+
+                xButton = false;
+                FormDetailedRecipe detailedRecipe = new FormDetailedRecipe(_recipe);
+                detailedRecipe.Tag = this;
+                detailedRecipe.StartPosition = FormStartPosition.Manual;
+                detailedRecipe.Location = Location;
+                detailedRecipe.Show();
+                Close();
+            }
+            
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -85,7 +115,7 @@ namespace DigitalCookbook
             Close();
         }
 
-        private Image? ShowFileDiaglog()
+        private Image ShowFileDiaglog()
         {
             Image image = recipeImage;
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -110,6 +140,19 @@ namespace DigitalCookbook
             }
         }
 
-        
+        private bool ValidateFields()
+        {
+            if (String.IsNullOrWhiteSpace(txtRecipeName.Text))
+            {
+                MessageBox.Show("Recipe must have a name");
+                return false;
+            }
+            else if (String.IsNullOrWhiteSpace(rchSteps.Text))
+            {
+                MessageBox.Show("Recipe must have atleast 1 step");
+                return false;
+            }
+            return true;
+        }
     }
 }

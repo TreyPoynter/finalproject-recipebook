@@ -89,7 +89,5 @@ namespace DigitalCookbook
                 AddRecipeCard(recipe.CreateRecipeCard());
             }
         }
-
-        
     }
 }

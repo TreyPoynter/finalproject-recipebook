@@ -21,6 +21,11 @@ namespace DigitalCookbook
             _currentStep = 0;
             _recipe = selectedRecipe;
             ShowDetails();
+            Point pos = picIsFavorite.Parent.PointToScreen(picIsFavorite.Location);
+            pos = picRecipeImage.PointToClient(pos);
+            picIsFavorite.Parent = picRecipeImage;
+            picIsFavorite.Location = pos;
+            picIsFavorite.BackColor = Color.Transparent;
         }
 
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
