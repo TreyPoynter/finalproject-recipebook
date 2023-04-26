@@ -138,7 +138,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDetailedRecipe";
-            this.Text = "FormDetailedRecipe";
+            this.Text = "Digital Cookbook - RECIPE NAME";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDetailedRecipe_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).EndInit();

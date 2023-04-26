@@ -26,6 +26,7 @@ namespace DigitalCookbook
             picIsFavorite.Parent = picRecipeImage;
             picIsFavorite.Location = pos;
             picIsFavorite.BackColor = Color.Transparent;
+            Text = $"Digital Cookbook - {_recipe.RecipeName}";
         }
 
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)

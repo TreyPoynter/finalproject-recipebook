@@ -35,6 +35,7 @@ namespace DigitalCookbook
             picIsFavorite.Visible = _recipe.IsFavorited;
             txtRecipeName.Text = _recipe.RecipeName;
             chkIsFavorited.Checked = _recipe.IsFavorited;
+            Text = $"Digital Cookbook - {_recipe.RecipeName} : Edit Mode";
             foreach (string step in _recipe.Steps.Split("~~"))
             {
                 if (step != string.Empty)

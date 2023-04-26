@@ -140,7 +140,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormEdit";
-            this.Text = "Digital Cookbook : RECIPE NAME - Edit Mode";
+            this.Text = "Digital Cookbook - RECIPE NAME : Edit Mode";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEdit_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).EndInit();
