@@ -87,7 +87,7 @@ namespace DigitalCookbook
         public RecipeCard CreateRecipeCard()
         {
             string[] steps = rchSteps.Text.Split("\n");
-            Recipe recipe = new Recipe(txtRecipeName.Text, image, chkIsFavorited.Checked, steps);
+            Recipe recipe = new Recipe(txtRecipeName.Text, ImageToByteArray(image), chkIsFavorited.Checked, String.Join("~~", steps));
 
             RecipeCard card = new RecipeCard(recipe);
             card.Name = $"crd{recipe.RecipeName}";
@@ -113,7 +113,14 @@ namespace DigitalCookbook
             formRecipes.Show();
             Close();
         }
-
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
 
     }
 }

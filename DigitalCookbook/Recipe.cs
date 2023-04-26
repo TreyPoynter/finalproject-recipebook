@@ -9,9 +9,9 @@ namespace DigitalCookbook
     public class Recipe
     {
         private string _recipeName = String.Empty;
-        private Image? _recipeImage;
+        private byte[] _recipeImage;
         private bool _isFavorited;
-        private string[]? _steps;
+        private string _steps = String.Empty;
 
         public int RecipeID { get; set; }
         public string RecipeName
@@ -19,7 +19,7 @@ namespace DigitalCookbook
             get { return _recipeName; }
             set { _recipeName = value; }
         }
-        public Image? RecipeImage
+        public byte[] RecipeImage
         {
             get { return _recipeImage; }
             set { _recipeImage = value; }
@@ -29,13 +29,18 @@ namespace DigitalCookbook
             get { return _isFavorited; }
             set { _isFavorited = value; }
         }
-        public string[]? Steps
+        public string Steps
         {
             get { return _steps; }
             set { _steps = value; }
         }
 
-        public Recipe(string recipeName, Image recipeImage, bool isFavorite, string[] steps)
+        public Recipe()
+        {
+
+        }
+
+        public Recipe(string recipeName, byte[] recipeImage, bool isFavorite, string steps)
         {
             RecipeName = recipeName;
             RecipeImage = recipeImage;

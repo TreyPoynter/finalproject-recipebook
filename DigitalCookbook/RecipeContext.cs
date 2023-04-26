@@ -21,8 +21,22 @@ namespace DigitalCookbook
         protected override void OnModelCreating(ModelBuilder mb)
         {
             mb.Entity<Recipe>().HasData(
-                new Recipe("Krabby Patty", Images.krabby_patty, true,
-                new string[] { "Pay Mr. Krabs $4.00", "Spongebob makes the patty", "Squidward gives it" }));
+                new Recipe()
+                {
+                    RecipeID = 1,
+                    RecipeName = "Krabby Patty",
+                    RecipeImage = ImageToByteArray(Images.krabby_patty),
+                    IsFavorited = true,
+                    Steps = "Pay Mr. Krabs $4.00~~Spongebob makes the patty~~Squidward gives it"
+                });
+        }
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
         }
 
 
