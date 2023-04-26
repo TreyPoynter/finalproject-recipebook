@@ -136,6 +136,7 @@
             this.Controls.Add(this.lblRecipeName);
             this.Controls.Add(this.picRecipeImage);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDetailedRecipe";
             this.Text = "Digital Cookbook - RECIPE NAME";

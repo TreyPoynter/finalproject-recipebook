@@ -86,7 +86,7 @@ namespace DigitalCookbook
         }
         public RecipeCard CreateRecipeCard()
         {
-            string[] steps = rchSteps.Text.Split("\n");
+            string[] steps = rchSteps.Text.Split("\n").Where(t => t != String.Empty).ToArray();
             Recipe recipe = new Recipe(txtRecipeName.Text, ImageToByteArray(image), chkIsFavorited.Checked, String.Join("~~", steps));
 
             RecipeCard card = recipe.CreateRecipeCard();

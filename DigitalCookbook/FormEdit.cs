@@ -39,9 +39,7 @@ namespace DigitalCookbook
             foreach (string step in _recipe.Steps.Split("~~"))
             {
                 if (step != string.Empty)
-                {
                     rchSteps.Text += $"{step}\n";
-                }
             }
         }
         private void FormEdit_FormClosing(object sender, FormClosingEventArgs e)
@@ -54,7 +52,6 @@ namespace DigitalCookbook
             recipeImage = ShowFileDiaglog();
             _recipe.RecipeImage = ImageToByteArray(recipeImage);
         }
-
         private void chkIsFavorited_CheckedChanged(object sender, EventArgs e)
         {
             picIsFavorite.Visible = chkIsFavorited.Checked;
@@ -142,7 +139,6 @@ namespace DigitalCookbook
                 return ms.ToArray();
             }
         }
-
         private bool ValidateFields()
         {
             if (String.IsNullOrWhiteSpace(txtRecipeName.Text))

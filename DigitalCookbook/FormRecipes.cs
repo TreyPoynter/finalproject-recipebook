@@ -3,12 +3,12 @@ namespace DigitalCookbook
     public partial class FormRecipes : Form
     {
         RecipeContext recipeDb;
-        List<Recipe> recipes;
+        Recipe[] recipes;
         public FormRecipes()
         {
             InitializeComponent();
             recipeDb = new RecipeContext();
-            recipes = recipeDb.Recipes.Select(r => r).ToList();
+            recipes = recipeDb.Recipes.Select(r => r).ToArray();
 
             DisplayRecipeCards();
         }
@@ -26,7 +26,7 @@ namespace DigitalCookbook
                 MessageBox.Show("Failed Adding Recipe");
             }
 
-            recipes = recipeDb.Recipes.Select(r => r).ToList();
+            recipes = recipeDb.Recipes.Select(r => r).ToArray();
             DisplayRecipeCards();
         }
 
@@ -47,21 +47,21 @@ namespace DigitalCookbook
         {
             if (txtSearchRecipe.Text != String.Empty)
             {
-                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
+                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToArray();
                 DisplayRecipeCards();
             }
             else
             {
-                recipes = recipeDb.Recipes.Select(r => r).ToList();
+                recipes = recipeDb.Recipes.Select(r => r).ToArray();
                 DisplayRecipeCards();
             }
         }
         private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
         {
             if (chkOnlyFavorites.Checked)
-                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
+                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToArray();
             else
-                recipes = recipeDb.Recipes.Select(r => r).ToList();
+                recipes = recipeDb.Recipes.Select(r => r).ToArray();
             DisplayRecipeCards();
 
         }
@@ -75,12 +75,12 @@ namespace DigitalCookbook
             formDetailed.Show();
             Hide();
         }
+
         private void AddRecipeCard(RecipeCard recipeCard)
         {
             recipeCard.Click += RecipeCard_Click;
             floRecipeCards.Controls.Add(recipeCard);
         }
-
         private void DisplayRecipeCards()
         {
             floRecipeCards.Controls.Clear();
