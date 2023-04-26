@@ -118,7 +118,7 @@
             this.picRecipeImage.Location = new System.Drawing.Point(12, 12);
             this.picRecipeImage.Name = "picRecipeImage";
             this.picRecipeImage.Size = new System.Drawing.Size(446, 469);
-            this.picRecipeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picRecipeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picRecipeImage.TabIndex = 11;
             this.picRecipeImage.TabStop = false;
             // 
