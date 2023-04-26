@@ -20,6 +20,7 @@ namespace DigitalCookbook
             InitializeComponent();
             _currentStep = 0;
             _recipe = selectedRecipe;
+            ShowDetails();
         }
 
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,7 +41,7 @@ namespace DigitalCookbook
         }
         private void btnNextStep_Click(object sender, EventArgs e)
         {
-            if (_currentStep < _recipe.Steps.Length - 1)
+            if (_currentStep < _recipe.Steps.Split("~~").Length - 1)
             {
                 ++_currentStep;
                 DisplayStep();
@@ -56,34 +57,24 @@ namespace DigitalCookbook
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            // DO STUFF LATER
+            FormEdit editForm = new FormEdit(_recipe);
+            editForm.Tag = this;
+            editForm.StartPosition = FormStartPosition.Manual;
+            editForm.Location = Location;
+            editForm.Show();
+            Hide();
         }
 
         public void ShowDetails()
         {
             lblRecipeName.Text = _recipe.RecipeName;
-            picRecipeImage.Image = ByteArrayToImage(_recipe.RecipeImage);
+            picRecipeImage.Image = _recipe.ByteArrayToImage();
             picIsFavorite.Visible = _recipe.IsFavorited;
             DisplayStep();
         }
         public void DisplayStep()
         {
-            
             rtbSteps.Text = $"Step {_currentStep + 1} : {_recipe.Steps.Split("~~")[_currentStep]}";
-        }
-
-        private void FormDetailedRecipe_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        public Image ByteArrayToImage(byte[] bytesArr)
-        {
-            using (MemoryStream memstr = new MemoryStream(bytesArr))
-            {
-                Image img = Image.FromStream(memstr);
-                return img;
-            }
         }
     }
 }

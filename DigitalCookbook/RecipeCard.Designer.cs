@@ -41,6 +41,7 @@
             this.picRecipeImage.Location = new System.Drawing.Point(0, 0);
             this.picRecipeImage.Name = "picRecipeImage";
             this.picRecipeImage.Size = new System.Drawing.Size(130, 119);
+            this.picRecipeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picRecipeImage.TabIndex = 0;
             this.picRecipeImage.TabStop = false;
             // 
@@ -72,6 +73,7 @@
             this.Controls.Add(this.picFavoriteIcon);
             this.Controls.Add(this.lblRecipeName);
             this.Controls.Add(this.picRecipeImage);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "RecipeCard";
             this.Size = new System.Drawing.Size(130, 148);
             this.Load += new System.EventHandler(this.RecipeCard_Load);

@@ -140,7 +140,6 @@
             this.Name = "FormDetailedRecipe";
             this.Text = "FormDetailedRecipe";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDetailedRecipe_FormClosing);
-            this.Load += new System.EventHandler(this.FormDetailedRecipe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).EndInit();
             this.ResumeLayout(false);

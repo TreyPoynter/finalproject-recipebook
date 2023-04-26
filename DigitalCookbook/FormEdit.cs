@@ -12,13 +12,18 @@ namespace DigitalCookbook
 {
     public partial class FormEdit : Form
     {
+        int recipeID;
+        private RecipeContext recipeDB;
+        private bool xButton = true;
         private Recipe? _recipe;
         private Image recipeImage;
         public FormEdit(Recipe recipeToEdit)
         {
+            recipeDB = new RecipeContext();
             InitializeComponent();
             _recipe = recipeToEdit;
-            recipeImage = ByteArrayToImage(recipeToEdit.RecipeImage);
+            recipeImage = recipeToEdit.ByteArrayToImage();
+            recipeID = recipeToEdit.RecipeID;
 
             rchSteps.Text = String.Empty;
             picRecipeImage.Image = recipeImage;
@@ -30,7 +35,11 @@ namespace DigitalCookbook
                 rchSteps.Text += $"{step}\n";
             }
         }
-
+        private void FormEdit_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (xButton)
+                Application.Exit();
+        }
         private void btnImageSelector_Click(object sender, EventArgs e)
         {
             _recipe.RecipeImage = ImageToByteArray(recipeImage);
@@ -40,15 +49,40 @@ namespace DigitalCookbook
         {
             picIsFavorite.Visible = chkIsFavorited.Checked;
         }
-
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            // DO THIS LATER
+            xButton = false;
+            FormDetailedRecipe detailedRecipe = new FormDetailedRecipe(_recipe);
+            detailedRecipe.Tag = this;
+            detailedRecipe.StartPosition = FormStartPosition.Manual;
+            detailedRecipe.Location = Location;
+            detailedRecipe.Show();
+            Close();
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            // DO THIS LATER
+            Recipe? recipeToDelete = recipeDB.Recipes.Find(recipeID);
+
+            if (recipeToDelete != null)
+            {
+                try
+                {
+                    recipeDB.Recipes.Remove(recipeToDelete);
+                    recipeDB.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Failed to delete {_recipe.RecipeName}");
+                }
+            }
+
+            xButton = false;
+            FormRecipes formRecipes = new FormRecipes();
+            formRecipes.Tag = this;
+            formRecipes.StartPosition = FormStartPosition.Manual;
+            formRecipes.Location = Location;
+            formRecipes.Show();
+            Close();
         }
 
         private Image? ShowFileDiaglog()
@@ -67,14 +101,6 @@ namespace DigitalCookbook
             }
             return image;
         }
-        public Image ByteArrayToImage(byte[] bytesArr)
-        {
-            using (MemoryStream memstr = new MemoryStream(bytesArr))
-            {
-                Image img = Image.FromStream(memstr);
-                return img;
-            }
-        }
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -83,5 +109,7 @@ namespace DigitalCookbook
                 return ms.ToArray();
             }
         }
+
+        
     }
 }

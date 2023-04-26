@@ -32,7 +32,7 @@
             this.floRecipeCards = new System.Windows.Forms.FlowLayoutPanel();
             this.chkOnlyFavorites = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearchRecipe = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnCreate
@@ -62,6 +62,7 @@
             this.chkOnlyFavorites.TabIndex = 7;
             this.chkOnlyFavorites.Text = "Show only Favorites";
             this.chkOnlyFavorites.UseVisualStyleBackColor = true;
+            this.chkOnlyFavorites.CheckedChanged += new System.EventHandler(this.chkOnlyFavorites_CheckedChanged);
             // 
             // label1
             // 
@@ -72,12 +73,13 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Search Recipe by Name :";
             // 
-            // textBox1
+            // txtSearchRecipe
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(319, 34);
-            this.textBox1.TabIndex = 5;
+            this.txtSearchRecipe.Location = new System.Drawing.Point(12, 51);
+            this.txtSearchRecipe.Name = "txtSearchRecipe";
+            this.txtSearchRecipe.Size = new System.Drawing.Size(319, 34);
+            this.txtSearchRecipe.TabIndex = 5;
+            this.txtSearchRecipe.TextChanged += new System.EventHandler(this.txtSearchRecipe_TextChanged);
             // 
             // FormRecipes
             // 
@@ -88,7 +90,7 @@
             this.Controls.Add(this.floRecipeCards);
             this.Controls.Add(this.chkOnlyFavorites);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearchRecipe);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -106,6 +108,6 @@
         private FlowLayoutPanel floRecipeCards;
         private CheckBox chkOnlyFavorites;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtSearchRecipe;
     }
 }

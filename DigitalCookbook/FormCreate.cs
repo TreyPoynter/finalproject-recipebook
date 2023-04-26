@@ -89,7 +89,7 @@ namespace DigitalCookbook
             string[] steps = rchSteps.Text.Split("\n");
             Recipe recipe = new Recipe(txtRecipeName.Text, ImageToByteArray(image), chkIsFavorited.Checked, String.Join("~~", steps));
 
-            RecipeCard card = new RecipeCard(recipe);
+            RecipeCard card = recipe.CreateRecipeCard();
             card.Name = $"crd{recipe.RecipeName}";
             return card;
         }

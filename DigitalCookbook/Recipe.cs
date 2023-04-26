@@ -47,5 +47,18 @@ namespace DigitalCookbook
             IsFavorited = isFavorite;
             Steps = steps;
         }
+
+        public RecipeCard CreateRecipeCard()
+        {
+            return new RecipeCard(this);
+        }
+        public Image ByteArrayToImage()
+        {
+            using (MemoryStream memstr = new MemoryStream(RecipeImage))
+            {
+                Image img = Image.FromStream(memstr);
+                return img;
+            }
+        }
     }
 }
