@@ -1,4 +1,5 @@
-﻿using System.Speech;
+﻿using System.Runtime.InteropServices;
+using System.Speech;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 
@@ -6,6 +7,10 @@ namespace DigitalCookbook
 {
     public partial class FormDetailedRecipe : Form
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
+        private const uint WM_SETICON = 0x80u;
+        private const int ICON_BIG = 1;
         bool enabledTTS = false;
         private SpeechSynthesizer speechSyn;
         private uint _currentStep;
@@ -24,6 +29,7 @@ namespace DigitalCookbook
             picIsFavorite.Location = pos;
             picIsFavorite.BackColor = Color.Transparent;
             Text = $"Digital Cookbook - {_recipe.RecipeName}";
+            SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
         }
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -38,6 +44,7 @@ namespace DigitalCookbook
             formRecipes.StartPosition = FormStartPosition.Manual;
             formRecipes.Location = Location;
             formRecipes.Show();
+            speechSyn.Dispose();
             Close();
         }
         private void btnNextStep_Click(object sender, EventArgs e)
@@ -87,7 +94,6 @@ namespace DigitalCookbook
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
         }
-
         private void TextToSpeech(string text)
         {
             speechSyn.SpeakAsync(text);

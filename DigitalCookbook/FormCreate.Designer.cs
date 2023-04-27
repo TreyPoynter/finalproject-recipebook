@@ -47,14 +47,14 @@
             // 
             this.rchSteps.Location = new System.Drawing.Point(464, 172);
             this.rchSteps.Name = "rchSteps";
-            this.rchSteps.Size = new System.Drawing.Size(456, 230);
+            this.rchSteps.Size = new System.Drawing.Size(492, 230);
             this.rchSteps.TabIndex = 16;
             this.rchSteps.Text = "";
             // 
             // chkIsFavorited
             // 
             this.chkIsFavorited.AutoSize = true;
-            this.chkIsFavorited.Location = new System.Drawing.Point(786, 110);
+            this.chkIsFavorited.Location = new System.Drawing.Point(822, 110);
             this.chkIsFavorited.Name = "chkIsFavorited";
             this.chkIsFavorited.Size = new System.Drawing.Size(134, 32);
             this.chkIsFavorited.TabIndex = 15;
@@ -64,7 +64,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(715, 408);
+            this.btnCreate.Location = new System.Drawing.Point(751, 408);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(205, 73);
             this.btnCreate.TabIndex = 14;
@@ -116,7 +116,7 @@
             // 
             this.txtRecipeName.Location = new System.Drawing.Point(464, 43);
             this.txtRecipeName.Name = "txtRecipeName";
-            this.txtRecipeName.Size = new System.Drawing.Size(379, 34);
+            this.txtRecipeName.Size = new System.Drawing.Size(492, 34);
             this.txtRecipeName.TabIndex = 9;
             // 
             // openFileDialog1
@@ -138,7 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 493);
+            this.ClientSize = new System.Drawing.Size(968, 493);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.rchSteps);
             this.Controls.Add(this.chkIsFavorited);

@@ -38,10 +38,10 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(393, 38);
+            this.btnCreate.Location = new System.Drawing.Point(446, 38);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(148, 60);
-            this.btnCreate.TabIndex = 9;
+            this.btnCreate.Size = new System.Drawing.Size(185, 60);
+            this.btnCreate.TabIndex = 6;
             this.btnCreate.Text = "Add Recipe";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -51,7 +51,7 @@
             this.floRecipeCards.AutoScroll = true;
             this.floRecipeCards.Location = new System.Drawing.Point(12, 108);
             this.floRecipeCards.Name = "floRecipeCards";
-            this.floRecipeCards.Size = new System.Drawing.Size(908, 365);
+            this.floRecipeCards.Size = new System.Drawing.Size(944, 365);
             this.floRecipeCards.TabIndex = 8;
             // 
             // chkOnlyFavorites
@@ -86,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 493);
+            this.ClientSize = new System.Drawing.Size(968, 493);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.floRecipeCards);
             this.Controls.Add(this.chkOnlyFavorites);

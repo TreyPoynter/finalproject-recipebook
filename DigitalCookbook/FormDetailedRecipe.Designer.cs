@@ -55,7 +55,7 @@
             // btnEdit
             // 
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.Location = new System.Drawing.Point(715, 408);
+            this.btnEdit.Location = new System.Drawing.Point(751, 408);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(205, 73);
             this.btnEdit.TabIndex = 17;
@@ -88,7 +88,7 @@
             // btnNextStep
             // 
             this.btnNextStep.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNextStep.Location = new System.Drawing.Point(715, 212);
+            this.btnNextStep.Location = new System.Drawing.Point(760, 212);
             this.btnNextStep.Name = "btnNextStep";
             this.btnNextStep.Size = new System.Drawing.Size(196, 72);
             this.btnNextStep.TabIndex = 14;
@@ -100,7 +100,7 @@
             // 
             this.rtbSteps.Location = new System.Drawing.Point(464, 61);
             this.rtbSteps.Name = "rtbSteps";
-            this.rtbSteps.Size = new System.Drawing.Size(456, 145);
+            this.rtbSteps.Size = new System.Drawing.Size(492, 145);
             this.rtbSteps.TabIndex = 13;
             this.rtbSteps.Text = "Step 0: Make Recipe";
             // 
@@ -127,7 +127,7 @@
             // chkEnableTTS
             // 
             this.chkEnableTTS.AutoSize = true;
-            this.chkEnableTTS.Location = new System.Drawing.Point(697, 290);
+            this.chkEnableTTS.Location = new System.Drawing.Point(733, 290);
             this.chkEnableTTS.Name = "chkEnableTTS";
             this.chkEnableTTS.Size = new System.Drawing.Size(223, 32);
             this.chkEnableTTS.TabIndex = 19;
@@ -139,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 493);
+            this.ClientSize = new System.Drawing.Size(968, 493);
             this.Controls.Add(this.chkEnableTTS);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.btnEdit);

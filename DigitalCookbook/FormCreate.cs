@@ -1,19 +1,26 @@
 ﻿using System.Data;
+using System.Runtime.InteropServices;
 
 namespace DigitalCookbook
 {
     public partial class FormCreate : Form
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
+        private const uint WM_SETICON = 0x80u;
+        private const int ICON_BIG = 1;
         private Image? image;
         private bool xButton = true;
         public FormCreate()
         {
             InitializeComponent();
+            image = Images._default;
             Point pos = picIsFavorite.Parent.PointToScreen(picIsFavorite.Location);
             pos = picRecipeImage.PointToClient(pos);
             picIsFavorite.Parent = picRecipeImage;
             picIsFavorite.Location = pos;
             picIsFavorite.BackColor = Color.Transparent;
+            SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
         }
         private void FormCreate_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -79,7 +86,7 @@ namespace DigitalCookbook
         public RecipeCard CreateRecipeCard()
         {
             string[] steps = rchSteps.Text.Split("\n").Where(t => t != String.Empty).ToArray();
-            Recipe recipe = new Recipe(txtRecipeName.Text, ImageToByteArray(image), chkIsFavorited.Checked, String.Join("~~", steps));
+            Recipe recipe = new Recipe(txtRecipeName.Text, ImageHelper.ImageToByteArray(image), chkIsFavorited.Checked, String.Join("~~", steps));
 
             RecipeCard card = recipe.CreateRecipeCard();
             card.Name = $"crd{recipe.RecipeName}";
@@ -104,14 +111,6 @@ namespace DigitalCookbook
             formRecipes.Location = Location;
             formRecipes.Show();
             Close();
-        }
-        public byte[] ImageToByteArray(Image imageIn)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
         }
     }
 }

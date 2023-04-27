@@ -57,14 +57,14 @@
             // 
             this.rchSteps.Location = new System.Drawing.Point(464, 121);
             this.rchSteps.Name = "rchSteps";
-            this.rchSteps.Size = new System.Drawing.Size(456, 188);
+            this.rchSteps.Size = new System.Drawing.Size(492, 188);
             this.rchSteps.TabIndex = 25;
             this.rchSteps.Text = "";
             // 
             // chkIsFavorited
             // 
             this.chkIsFavorited.AutoSize = true;
-            this.chkIsFavorited.Location = new System.Drawing.Point(786, 68);
+            this.chkIsFavorited.Location = new System.Drawing.Point(822, 68);
             this.chkIsFavorited.Name = "chkIsFavorited";
             this.chkIsFavorited.Size = new System.Drawing.Size(134, 32);
             this.chkIsFavorited.TabIndex = 24;
@@ -76,7 +76,7 @@
             // 
             this.btnSaveChanges.Location = new System.Drawing.Point(464, 329);
             this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(456, 73);
+            this.btnSaveChanges.Size = new System.Drawing.Size(492, 73);
             this.btnSaveChanges.TabIndex = 23;
             this.btnSaveChanges.Text = "Save Changes";
             this.btnSaveChanges.UseVisualStyleBackColor = true;
@@ -108,14 +108,14 @@
             this.txtRecipeName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtRecipeName.Location = new System.Drawing.Point(464, 12);
             this.txtRecipeName.Name = "txtRecipeName";
-            this.txtRecipeName.Size = new System.Drawing.Size(379, 34);
+            this.txtRecipeName.Size = new System.Drawing.Size(492, 34);
             this.txtRecipeName.TabIndex = 18;
             // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(464, 408);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(456, 73);
+            this.btnDelete.Size = new System.Drawing.Size(492, 73);
             this.btnDelete.TabIndex = 27;
             this.btnDelete.Text = "Delete Recipe";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 493);
+            this.ClientSize = new System.Drawing.Size(968, 493);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.rchSteps);

@@ -1,13 +1,19 @@
 ﻿using System.Data;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace DigitalCookbook
 {
     public partial class FormEdit : Form
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
+        private const uint WM_SETICON = 0x80u;
+        private const int ICON_BIG = 1;
         int recipeID;
         private RecipeContext recipeDB;
         private bool xButton = true;
-        private Recipe? _recipe;
+        private Recipe _recipe;
         private Image recipeImage;
         public FormEdit(Recipe recipeToEdit)
         {
@@ -28,6 +34,7 @@ namespace DigitalCookbook
             txtRecipeName.Text = _recipe.RecipeName;
             chkIsFavorited.Checked = _recipe.IsFavorited;
             Text = $"Digital Cookbook - {_recipe.RecipeName} : Edit Mode";
+            SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
             foreach (string step in _recipe.Steps.Split("~~"))
             {
                 if (step != string.Empty)
@@ -42,7 +49,7 @@ namespace DigitalCookbook
         private void btnImageSelector_Click(object sender, EventArgs e)
         {
             recipeImage = ShowFileDiaglog();
-            _recipe.RecipeImage = ImageToByteArray(recipeImage);
+            _recipe.RecipeImage = ImageHelper.ImageToByteArray(recipeImage);
         }
         private void chkIsFavorited_CheckedChanged(object sender, EventArgs e)
         {
@@ -65,7 +72,7 @@ namespace DigitalCookbook
                 {
                     _recipe.RecipeName = txtRecipeName.Text;
                     _recipe.IsFavorited= chkIsFavorited.Checked;
-                    _recipe.RecipeImage = ImageToByteArray(recipeImage);
+                    _recipe.RecipeImage = ImageHelper.ImageToByteArray(recipeImage);
                     _recipe.Steps = String.Join("~~", rchSteps.Text.Split('\n').Where(t => t != String.Empty));
                     try
                     {
@@ -129,14 +136,6 @@ namespace DigitalCookbook
                 picRecipeImage.Image = image;
             }
             return image;
-        }
-        public byte[] ImageToByteArray(Image imageIn)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
         }
         private bool ValidateFields()
         {

@@ -1,7 +1,14 @@
+using System.Runtime.InteropServices;
+
 namespace DigitalCookbook
 {
     public partial class FormRecipes : Form
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
+        private const uint WM_SETICON = 0x80u;
+        private const int ICON_BIG = 1;
+
         RecipeContext recipeDb;
         List<Recipe> recipes;
         public FormRecipes()
@@ -9,10 +16,11 @@ namespace DigitalCookbook
             InitializeComponent();
             recipeDb = new RecipeContext();
             recipes = recipeDb.Recipes.Select(r => r).ToList();
+            SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
 
             DisplayRecipeCards();
         }
-        public FormRecipes(RecipeCard? newCard)
+        public FormRecipes(RecipeCard newCard)
         {
             recipeDb = new RecipeContext();
             InitializeComponent();
@@ -25,7 +33,7 @@ namespace DigitalCookbook
             {
                 MessageBox.Show("Failed Adding Recipe");
             }
-
+            SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
             recipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
         }
@@ -45,25 +53,25 @@ namespace DigitalCookbook
         }
         private void txtSearchRecipe_TextChanged(object sender, EventArgs e)
         {
-            if (txtSearchRecipe.Text != String.Empty)
-            {
+            if (txtSearchRecipe.Text != String.Empty && chkOnlyFavorites.Checked)
+                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
+            else if (txtSearchRecipe.Text != String.Empty)
                 recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
-                DisplayRecipeCards();
-            }
-            else
-            {
-                recipes = recipeDb.Recipes.Select(r => r).ToList();
-                DisplayRecipeCards();
-            }
-        }
-        private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkOnlyFavorites.Checked)
-                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
             else
                 recipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
-
+        }
+        private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
+        {
+            if (txtSearchRecipe.Text != String.Empty && chkOnlyFavorites.Checked)
+                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
+            else if (chkOnlyFavorites.Checked)
+                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
+            else if (txtSearchRecipe.Text != String.Empty)
+                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
+            else
+                recipes = recipeDb.Recipes.Select(r => r).ToList();
+            DisplayRecipeCards();
         }
         private void RecipeCard_Click(object sender, EventArgs e)
         {
