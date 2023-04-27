@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecipes));
             this.btnCreate = new System.Windows.Forms.Button();
             this.floRecipeCards = new System.Windows.Forms.FlowLayoutPanel();
             this.chkOnlyFavorites = new System.Windows.Forms.CheckBox();
@@ -93,6 +94,7 @@
             this.Controls.Add(this.txtSearchRecipe);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FormRecipes";

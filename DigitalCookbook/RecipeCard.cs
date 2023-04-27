@@ -12,7 +12,7 @@ namespace DigitalCookbook
 {
     public partial class RecipeCard : UserControl
     {
-        Recipe recipe;
+        private Recipe recipe;
         private Image recipeImage;
         public RecipeCard(Recipe recipe)
         {

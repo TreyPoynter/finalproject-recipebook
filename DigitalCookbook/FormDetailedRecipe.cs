@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Speech;
+using System.Speech.Recognition;
+using System.Speech.Synthesis;
 
 namespace DigitalCookbook
 {
     public partial class FormDetailedRecipe : Form
     {
+        bool enabledTTS = false;
+        private SpeechSynthesizer speechSyn;
         private uint _currentStep;
         private bool xButton = true;
         private readonly Recipe _recipe;
         public FormDetailedRecipe(Recipe selectedRecipe)
         {
+            speechSyn = new SpeechSynthesizer();
             InitializeComponent();
             _currentStep = 0;
             _recipe = selectedRecipe;
@@ -68,17 +65,32 @@ namespace DigitalCookbook
             editForm.Show();
             Hide();
         }
+        private void chkEnableTTS_CheckedChanged(object sender, EventArgs e)
+        {
+            enabledTTS = chkEnableTTS.Checked;
 
-        public void ShowDetails()
+            if (enabledTTS)
+                TextToSpeech(rtbSteps.Text);
+        }
+
+        private void ShowDetails()
         {
             lblRecipeName.Text = _recipe.RecipeName;
             picRecipeImage.Image = _recipe.ByteArrayToImage();
             picIsFavorite.Visible = _recipe.IsFavorited;
             DisplayStep();
         }
-        public void DisplayStep()
+        private void DisplayStep()
         {
             rtbSteps.Text = $"Step {_currentStep + 1} : {_recipe.Steps.Split("~~")[_currentStep]}";
+
+            if (enabledTTS)
+                TextToSpeech(rtbSteps.Text);
+        }
+
+        private void TextToSpeech(string text)
+        {
+            speechSyn.SpeakAsync(text);
         }
     }
 }

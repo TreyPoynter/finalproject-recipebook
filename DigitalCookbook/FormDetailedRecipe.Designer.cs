@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailedRecipe));
             this.picIsFavorite = new System.Windows.Forms.PictureBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.rtbSteps = new System.Windows.Forms.RichTextBox();
             this.lblRecipeName = new System.Windows.Forms.Label();
             this.picRecipeImage = new System.Windows.Forms.PictureBox();
+            this.chkEnableTTS = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).BeginInit();
             this.SuspendLayout();
@@ -122,11 +124,23 @@
             this.picRecipeImage.TabIndex = 11;
             this.picRecipeImage.TabStop = false;
             // 
+            // chkEnableTTS
+            // 
+            this.chkEnableTTS.AutoSize = true;
+            this.chkEnableTTS.Location = new System.Drawing.Point(697, 290);
+            this.chkEnableTTS.Name = "chkEnableTTS";
+            this.chkEnableTTS.Size = new System.Drawing.Size(223, 32);
+            this.chkEnableTTS.TabIndex = 19;
+            this.chkEnableTTS.Text = "Enable Text to Speech";
+            this.chkEnableTTS.UseVisualStyleBackColor = true;
+            this.chkEnableTTS.CheckedChanged += new System.EventHandler(this.chkEnableTTS_CheckedChanged);
+            // 
             // FormDetailedRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 493);
+            this.Controls.Add(this.chkEnableTTS);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnBack);
@@ -137,6 +151,7 @@
             this.Controls.Add(this.picRecipeImage);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDetailedRecipe";
             this.Text = "Digital Cookbook - RECIPE NAME";
@@ -158,5 +173,6 @@
         private RichTextBox rtbSteps;
         private Label lblRecipeName;
         private PictureBox picRecipeImage;
+        private CheckBox chkEnableTTS;
     }
 }

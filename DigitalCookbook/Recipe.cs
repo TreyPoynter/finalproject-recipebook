@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigitalCookbook
 {
-    public class Recipe
+    public sealed class Recipe
     {
         private string _recipeName = String.Empty;
         private byte[] _recipeImage;
@@ -36,9 +36,7 @@ namespace DigitalCookbook
         }
 
         public Recipe()
-        {
-
-        }
+        {}
 
         public Recipe(string recipeName, byte[] recipeImage, bool isFavorite, string steps)
         {

@@ -3,12 +3,12 @@ namespace DigitalCookbook
     public partial class FormRecipes : Form
     {
         RecipeContext recipeDb;
-        Recipe[] recipes;
+        List<Recipe> recipes;
         public FormRecipes()
         {
             InitializeComponent();
             recipeDb = new RecipeContext();
-            recipes = recipeDb.Recipes.Select(r => r).ToArray();
+            recipes = recipeDb.Recipes.Select(r => r).ToList();
 
             DisplayRecipeCards();
         }
@@ -26,7 +26,7 @@ namespace DigitalCookbook
                 MessageBox.Show("Failed Adding Recipe");
             }
 
-            recipes = recipeDb.Recipes.Select(r => r).ToArray();
+            recipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
         }
 
@@ -47,21 +47,21 @@ namespace DigitalCookbook
         {
             if (txtSearchRecipe.Text != String.Empty)
             {
-                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToArray();
+                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
                 DisplayRecipeCards();
             }
             else
             {
-                recipes = recipeDb.Recipes.Select(r => r).ToArray();
+                recipes = recipeDb.Recipes.Select(r => r).ToList();
                 DisplayRecipeCards();
             }
         }
         private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
         {
             if (chkOnlyFavorites.Checked)
-                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToArray();
+                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
             else
-                recipes = recipeDb.Recipes.Select(r => r).ToArray();
+                recipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
 
         }
