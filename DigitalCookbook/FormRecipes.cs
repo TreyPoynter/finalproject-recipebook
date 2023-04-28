@@ -10,12 +10,12 @@ namespace DigitalCookbook
         private const int ICON_BIG = 1;
 
         RecipeContext recipeDb;
-        List<Recipe> recipes;
+        List<Recipe> foundRecipes;
         public FormRecipes()
         {
             InitializeComponent();
             recipeDb = new RecipeContext();
-            recipes = recipeDb.Recipes.Select(r => r).ToList();
+            foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
 
             DisplayRecipeCards();
@@ -34,10 +34,9 @@ namespace DigitalCookbook
                 MessageBox.Show("Failed Adding Recipe");
             }
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
-            recipes = recipeDb.Recipes.Select(r => r).ToList();
+            foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
         }
-
         private void btnCreate_Click(object sender, EventArgs e)
         {
             FormCreate formCreate = new FormCreate();
@@ -54,23 +53,23 @@ namespace DigitalCookbook
         private void txtSearchRecipe_TextChanged(object sender, EventArgs e)
         {
             if (txtSearchRecipe.Text != String.Empty && chkOnlyFavorites.Checked)
-                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
             else if (txtSearchRecipe.Text != String.Empty)
-                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
             else
-                recipes = recipeDb.Recipes.Select(r => r).ToList();
+                foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
         }
         private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
         {
             if (txtSearchRecipe.Text != String.Empty && chkOnlyFavorites.Checked)
-                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
             else if (chkOnlyFavorites.Checked)
-                recipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
             else if (txtSearchRecipe.Text != String.Empty)
-                recipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
             else
-                recipes = recipeDb.Recipes.Select(r => r).ToList();
+                foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
         }
         private void RecipeCard_Click(object sender, EventArgs e)
@@ -92,7 +91,7 @@ namespace DigitalCookbook
         private void DisplayRecipeCards()
         {
             floRecipeCards.Controls.Clear();
-            foreach (Recipe recipe in recipes)
+            foreach (Recipe recipe in foundRecipes)
             {
                 AddRecipeCard(recipe.CreateRecipeCard());
             }

@@ -13,7 +13,7 @@ namespace DigitalCookbook
         int recipeID;
         private RecipeContext recipeDB;
         private bool xButton = true;
-        private Recipe _recipe;
+        private Recipe? _recipe;
         private Image recipeImage;
         public FormEdit(Recipe recipeToEdit)
         {
@@ -49,7 +49,8 @@ namespace DigitalCookbook
         private void btnImageSelector_Click(object sender, EventArgs e)
         {
             recipeImage = ShowFileDiaglog();
-            _recipe.RecipeImage = ImageHelper.ImageToByteArray(recipeImage);
+            if (_recipe != null)
+                _recipe.RecipeImage = ImageHelper.ImageToByteArray(recipeImage);
         }
         private void chkIsFavorited_CheckedChanged(object sender, EventArgs e)
         {
@@ -108,7 +109,7 @@ namespace DigitalCookbook
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show($"Failed to delete {_recipe.RecipeName}");
+                    MessageBox.Show($"Failed to delete {recipeToDelete.RecipeName}");
                 }
             }
 

@@ -9,7 +9,7 @@ namespace DigitalCookbook
         static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, IntPtr lParam);
         private const uint WM_SETICON = 0x80u;
         private const int ICON_BIG = 1;
-        private Image? image;
+        private Image image;
         private bool xButton = true;
         public FormCreate()
         {
@@ -48,9 +48,9 @@ namespace DigitalCookbook
             picIsFavorite.Visible = chkIsFavorited.Checked;
         }
 
-        private Image? ShowFileDiaglog()
+        private Image ShowFileDiaglog()
         {
-            Image? image = null;
+            Image image = Images._default;
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Title = "Select an Image";
             fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures).ToString();
@@ -69,11 +69,6 @@ namespace DigitalCookbook
             if (String.IsNullOrWhiteSpace(txtRecipeName.Text))
             {
                 MessageBox.Show("Recipe must have a name");
-                return false;
-            }
-            if (image == null)
-            {
-                MessageBox.Show("Recipe must have an image");
                 return false;
             }
             if (String.IsNullOrWhiteSpace(rchSteps.Text))
