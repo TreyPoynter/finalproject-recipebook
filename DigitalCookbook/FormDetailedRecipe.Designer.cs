@@ -145,7 +145,6 @@
             this.chkEnableSpeechRec.TabIndex = 20;
             this.chkEnableSpeechRec.Text = "Enable Speech Recognition";
             this.chkEnableSpeechRec.UseVisualStyleBackColor = true;
-            this.chkEnableSpeechRec.CheckedChanged += new System.EventHandler(this.chkEnableSpeechRec_CheckedChanged);
             // 
             // FormDetailedRecipe
             // 

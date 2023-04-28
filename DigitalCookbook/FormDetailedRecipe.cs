@@ -13,17 +13,13 @@ namespace DigitalCookbook
         private const uint WM_SETICON = 0x80u;
         private const int ICON_BIG = 1;
         bool enabledTTS = false;
-        bool enabledSpeechRec = false;
         private SpeechSynthesizer speechSyn;
-        SpeechRecognitionEngine speechRec;
         private uint _currentStep;
         private bool xButton = true;
         private readonly Recipe _recipe;
         public FormDetailedRecipe(Recipe selectedRecipe)
         {
             speechSyn = new SpeechSynthesizer();
-            speechRec = new SpeechRecognitionEngine();
-            speechRec.SetInputToDefaultAudioDevice();
             InitializeComponent();
             _currentStep = 0;
             _recipe = selectedRecipe;
@@ -39,10 +35,15 @@ namespace DigitalCookbook
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (xButton)
+            {
+                xButton = false;
                 Application.Exit();
+            }
+                
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
+            windowIsOpen = false;
             xButton = false;
             FormRecipes formRecipes = new FormRecipes();
             formRecipes.Tag = this;
@@ -54,9 +55,9 @@ namespace DigitalCookbook
         }
         private void btnNextStep_Click(object sender, EventArgs e)
         {
-            NextStep();
+             NextStep();
         }
-        private void btnRepeatStep_Click(object sender, EventArgs e)
+        private async void btnRepeatStep_Click(object sender, EventArgs e)
         {
             RepeatStep();
         }
@@ -76,10 +77,6 @@ namespace DigitalCookbook
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
         }
-        private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
-        {
-            enabledSpeechRec = chkEnableSpeechRec.Checked;
-        }
 
         private void NextStep()
         {
@@ -88,6 +85,7 @@ namespace DigitalCookbook
                 ++_currentStep;
                 DisplayStep();
             }
+
         }
         private void RepeatStep()
         {
@@ -96,6 +94,7 @@ namespace DigitalCookbook
                 --_currentStep;
                 DisplayStep();
             }
+
         }
         private void ShowDetails()
         {
@@ -114,21 +113,6 @@ namespace DigitalCookbook
         private void TextToSpeech(string text)
         {
             speechSyn.SpeakAsync(text);
-        }
-        private async void GetCommand()
-        {
-            RecognitionResult result = null;
-            Grammar word = new DictationGrammar();
-            speechRec.LoadGrammar(word);
-            speechRec.RecognizeAsync();
-            try
-            {
-                
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Mic not found");
-            }
         }
     }
 }
