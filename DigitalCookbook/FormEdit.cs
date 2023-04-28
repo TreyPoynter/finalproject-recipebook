@@ -66,7 +66,7 @@ namespace DigitalCookbook
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error saving recipe changes");
+                    MessageBox.Show("There was an error on our end updating your recipe");
                 }
 
                 if (_recipe != null)
@@ -82,12 +82,12 @@ namespace DigitalCookbook
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Error saving recipe changes");
+                        MessageBox.Show("There was an error on our end updating your recipe");
                     }
                 }
 
                 xButton = false;
-                FormDetailedRecipe detailedRecipe = new FormDetailedRecipe(_recipe);
+                FormDetailedRecipe detailedRecipe = new FormDetailedRecipe(_recipe!);
                 detailedRecipe.Tag = this;
                 detailedRecipe.StartPosition = FormStartPosition.Manual;
                 detailedRecipe.Location = Location;

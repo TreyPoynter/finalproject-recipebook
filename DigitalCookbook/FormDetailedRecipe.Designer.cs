@@ -38,6 +38,7 @@
             this.lblRecipeName = new System.Windows.Forms.Label();
             this.picRecipeImage = new System.Windows.Forms.PictureBox();
             this.chkEnableTTS = new System.Windows.Forms.CheckBox();
+            this.chkEnableSpeechRec = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).BeginInit();
             this.SuspendLayout();
@@ -135,6 +136,17 @@
             this.chkEnableTTS.UseVisualStyleBackColor = true;
             this.chkEnableTTS.CheckedChanged += new System.EventHandler(this.chkEnableTTS_CheckedChanged);
             // 
+            // chkEnableSpeechRec
+            // 
+            this.chkEnableSpeechRec.AutoSize = true;
+            this.chkEnableSpeechRec.Location = new System.Drawing.Point(686, 328);
+            this.chkEnableSpeechRec.Name = "chkEnableSpeechRec";
+            this.chkEnableSpeechRec.Size = new System.Drawing.Size(270, 32);
+            this.chkEnableSpeechRec.TabIndex = 20;
+            this.chkEnableSpeechRec.Text = "Enable Speech Recognition";
+            this.chkEnableSpeechRec.UseVisualStyleBackColor = true;
+            this.chkEnableSpeechRec.CheckedChanged += new System.EventHandler(this.chkEnableSpeechRec_CheckedChanged);
+            // 
             // FormDetailedRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
@@ -149,6 +161,7 @@
             this.Controls.Add(this.rtbSteps);
             this.Controls.Add(this.lblRecipeName);
             this.Controls.Add(this.picRecipeImage);
+            this.Controls.Add(this.chkEnableSpeechRec);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -174,5 +187,6 @@
         private Label lblRecipeName;
         private PictureBox picRecipeImage;
         private CheckBox chkEnableTTS;
+        private CheckBox chkEnableSpeechRec;
     }
 }

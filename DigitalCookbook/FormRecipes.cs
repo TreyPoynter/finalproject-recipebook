@@ -31,7 +31,7 @@ namespace DigitalCookbook
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed Adding Recipe");
+                MessageBox.Show("There was an issue adding the recipe");
             }
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
             foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
@@ -85,7 +85,7 @@ namespace DigitalCookbook
 
         private void AddRecipeCard(RecipeCard recipeCard)
         {
-            recipeCard.Click += RecipeCard_Click;
+            recipeCard.Click += RecipeCard_Click!;
             floRecipeCards.Controls.Add(recipeCard);
         }
         private void DisplayRecipeCards()

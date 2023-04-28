@@ -26,5 +26,15 @@
         {
             return recipe;
         }
+
+        private void RecipeCard_MouseEnter(object sender, EventArgs e)
+        {
+            BackColor = Color.LightGray;
+        }
+
+        private void RecipeCard_MouseLeave(object sender, EventArgs e)
+        {
+            BackColor = DefaultBackColor;
+        }
     }
 }

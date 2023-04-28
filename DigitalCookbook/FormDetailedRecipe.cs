@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Threading;
+using System.Runtime.InteropServices;
 using System.Speech;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
@@ -12,13 +13,17 @@ namespace DigitalCookbook
         private const uint WM_SETICON = 0x80u;
         private const int ICON_BIG = 1;
         bool enabledTTS = false;
+        bool enabledSpeechRec = false;
         private SpeechSynthesizer speechSyn;
+        SpeechRecognitionEngine speechRec;
         private uint _currentStep;
         private bool xButton = true;
         private readonly Recipe _recipe;
         public FormDetailedRecipe(Recipe selectedRecipe)
         {
             speechSyn = new SpeechSynthesizer();
+            speechRec = new SpeechRecognitionEngine();
+            speechRec.SetInputToDefaultAudioDevice();
             InitializeComponent();
             _currentStep = 0;
             _recipe = selectedRecipe;
@@ -49,19 +54,11 @@ namespace DigitalCookbook
         }
         private void btnNextStep_Click(object sender, EventArgs e)
         {
-            if (_currentStep < _recipe.Steps.Split("~~").Length - 1)
-            {
-                ++_currentStep;
-                DisplayStep();
-            }
+            NextStep();
         }
         private void btnRepeatStep_Click(object sender, EventArgs e)
         {
-            if (_currentStep > 0)
-            {
-                --_currentStep;
-                DisplayStep();
-            }
+            RepeatStep();
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -79,7 +76,27 @@ namespace DigitalCookbook
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
         }
+        private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
+        {
+            enabledSpeechRec = chkEnableSpeechRec.Checked;
+        }
 
+        private void NextStep()
+        {
+            if (_currentStep < _recipe.Steps.Split("~~").Length - 1)
+            {
+                ++_currentStep;
+                DisplayStep();
+            }
+        }
+        private void RepeatStep()
+        {
+            if (_currentStep > 0)
+            {
+                --_currentStep;
+                DisplayStep();
+            }
+        }
         private void ShowDetails()
         {
             lblRecipeName.Text = _recipe.RecipeName;
@@ -97,6 +114,21 @@ namespace DigitalCookbook
         private void TextToSpeech(string text)
         {
             speechSyn.SpeakAsync(text);
+        }
+        private async void GetCommand()
+        {
+            RecognitionResult result = null;
+            Grammar word = new DictationGrammar();
+            speechRec.LoadGrammar(word);
+            speechRec.RecognizeAsync();
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Mic not found");
+            }
         }
     }
 }

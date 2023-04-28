@@ -77,6 +77,8 @@
             this.Name = "RecipeCard";
             this.Size = new System.Drawing.Size(130, 148);
             this.Load += new System.EventHandler(this.RecipeCard_Load);
+            this.MouseEnter += new System.EventHandler(this.RecipeCard_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.RecipeCard_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFavoriteIcon)).EndInit();
             this.ResumeLayout(false);
