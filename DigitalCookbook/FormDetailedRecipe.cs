@@ -85,7 +85,6 @@ namespace DigitalCookbook
                 speechSyn.SpeakAsyncCancelAll();
 
             }
-                
         }
         private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
         {
