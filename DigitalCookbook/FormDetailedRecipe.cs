@@ -15,7 +15,6 @@ namespace DigitalCookbook
         bool enabledTTS = false;
         private SpeechSynthesizer speechSyn;
         private SpeechRecognitionEngine recEngine;
-        private PromptBuilder pb;
         private Choices choices;
         private uint _currentStep;
         private bool xButton = true;
@@ -24,7 +23,6 @@ namespace DigitalCookbook
         {
             speechSyn = new SpeechSynthesizer();
             recEngine = new SpeechRecognitionEngine();
-            pb = new PromptBuilder();
             choices = new Choices();
             InitializeComponent();
             _currentStep = 0;
@@ -82,6 +80,13 @@ namespace DigitalCookbook
 
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
+            else
+                speechSyn.SpeakAsyncCancelAll();
+        }
+        private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEnableSpeechRec.Checked)
+                GetCommand();
         }
 
         private void NextStep()
@@ -113,7 +118,10 @@ namespace DigitalCookbook
             rtbSteps.Text = $"Step {_currentStep + 1} : {_recipe.Steps.Split("~~")[_currentStep]}";
 
             if (enabledTTS)
+            {
+                speechSyn.SpeakAsyncCancelAll();
                 TextToSpeech(rtbSteps.Text);
+            }
         }
         private void TextToSpeech(string text)
         {
@@ -136,7 +144,6 @@ namespace DigitalCookbook
                 MessageBox.Show("Mic not found");
             }
         }
-
         private void RecEngine_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)
         {
             switch (e.Result.Text.ToLower().ToString())
@@ -148,12 +155,6 @@ namespace DigitalCookbook
                     RepeatStep();
                     break;
             }
-        }
-
-        private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkEnableSpeechRec.Checked)
-                GetCommand();
         }
     }
 }
