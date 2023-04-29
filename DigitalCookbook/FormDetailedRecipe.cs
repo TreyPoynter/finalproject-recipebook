@@ -81,12 +81,21 @@ namespace DigitalCookbook
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
             else
+            {
                 speechSyn.SpeakAsyncCancelAll();
+
+            }
+                
         }
         private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
         {
             if (chkEnableSpeechRec.Checked)
                 GetCommand();
+            else
+            {
+                recEngine.SpeechRecognized -= RecEngine_SpeechRecognized;
+                recEngine.RecognizeAsyncStop();
+            }
         }
 
         private void NextStep()
