@@ -14,12 +14,18 @@ namespace DigitalCookbook
         private const int ICON_BIG = 1;
         bool enabledTTS = false;
         private SpeechSynthesizer speechSyn;
+        private SpeechRecognitionEngine recEngine;
+        private PromptBuilder pb;
+        private Choices choices;
         private uint _currentStep;
         private bool xButton = true;
         private readonly Recipe _recipe;
         public FormDetailedRecipe(Recipe selectedRecipe)
         {
             speechSyn = new SpeechSynthesizer();
+            recEngine = new SpeechRecognitionEngine();
+            pb = new PromptBuilder();
+            choices = new Choices();
             InitializeComponent();
             _currentStep = 0;
             _recipe = selectedRecipe;
@@ -31,6 +37,7 @@ namespace DigitalCookbook
             picIsFavorite.BackColor = Color.Transparent;
             Text = $"Digital Cookbook - {_recipe.RecipeName}";
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
+            choices.Add(new string[] { "next", "repeat" });
         }
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -43,7 +50,6 @@ namespace DigitalCookbook
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            windowIsOpen = false;
             xButton = false;
             FormRecipes formRecipes = new FormRecipes();
             formRecipes.Tag = this;
@@ -57,7 +63,7 @@ namespace DigitalCookbook
         {
              NextStep();
         }
-        private async void btnRepeatStep_Click(object sender, EventArgs e)
+        private void btnRepeatStep_Click(object sender, EventArgs e)
         {
             RepeatStep();
         }
@@ -94,7 +100,6 @@ namespace DigitalCookbook
                 --_currentStep;
                 DisplayStep();
             }
-
         }
         private void ShowDetails()
         {
@@ -113,6 +118,42 @@ namespace DigitalCookbook
         private void TextToSpeech(string text)
         {
             speechSyn.SpeakAsync(text);
+        }
+        private void GetCommand()
+        {
+            Grammar gr = new Grammar(new GrammarBuilder(choices));
+
+            try
+            {
+                recEngine.RequestRecognizerUpdate();
+                recEngine.LoadGrammar(gr);
+                recEngine.SpeechRecognized += RecEngine_SpeechRecognized;
+                recEngine.SetInputToDefaultAudioDevice();
+                recEngine.RecognizeAsync(RecognizeMode.Multiple);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Mic not found");
+            }
+        }
+
+        private void RecEngine_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)
+        {
+            switch (e.Result.Text.ToLower().ToString())
+            {
+                case "next":
+                    NextStep();
+                    break;
+                case "repeat":
+                    RepeatStep();
+                    break;
+            }
+        }
+
+        private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEnableSpeechRec.Checked)
+                GetCommand();
         }
     }
 }

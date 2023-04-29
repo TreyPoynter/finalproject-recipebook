@@ -99,6 +99,7 @@
             // 
             // rtbSteps
             // 
+            this.rtbSteps.Enabled = false;
             this.rtbSteps.Location = new System.Drawing.Point(464, 61);
             this.rtbSteps.Name = "rtbSteps";
             this.rtbSteps.Size = new System.Drawing.Size(492, 145);
@@ -145,6 +146,7 @@
             this.chkEnableSpeechRec.TabIndex = 20;
             this.chkEnableSpeechRec.Text = "Enable Speech Recognition";
             this.chkEnableSpeechRec.UseVisualStyleBackColor = true;
+            this.chkEnableSpeechRec.CheckedChanged += new System.EventHandler(this.chkEnableSpeechRec_CheckedChanged);
             // 
             // FormDetailedRecipe
             // 
