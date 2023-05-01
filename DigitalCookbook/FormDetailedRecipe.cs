@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Runtime.InteropServices;
-using System.Speech;
+﻿using System.Runtime.InteropServices;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 
@@ -41,7 +39,6 @@ namespace DigitalCookbook
         {
             if (xButton)
             {
-                xButton = false;
                 Application.Exit();
             }
                 

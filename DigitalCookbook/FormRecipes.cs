@@ -52,22 +52,22 @@ namespace DigitalCookbook
         }
         private void txtSearchRecipe_TextChanged(object sender, EventArgs e)
         {
-            if (txtSearchRecipe.Text != String.Empty && chkOnlyFavorites.Checked)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
+            if (txtSearchRecipe.Text.Trim() != String.Empty && chkOnlyFavorites.Checked)
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim()) && r.IsFavorited).ToList();
             else if (txtSearchRecipe.Text != String.Empty)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim())).ToList();
             else
                 foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
         }
         private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtSearchRecipe.Text != String.Empty && chkOnlyFavorites.Checked)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text) && r.IsFavorited).ToList();
+            if (txtSearchRecipe.Text.Trim() != String.Empty && chkOnlyFavorites.Checked)
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim()) && r.IsFavorited).ToList();
             else if (chkOnlyFavorites.Checked)
                 foundRecipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
             else if (txtSearchRecipe.Text != String.Empty)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text)).ToList();
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim())).ToList();
             else
                 foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             DisplayRecipeCards();
