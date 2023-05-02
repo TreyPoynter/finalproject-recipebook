@@ -39,22 +39,23 @@
             this.txtRecipeName = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.picIsFavorite = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).BeginInit();
             this.SuspendLayout();
             // 
             // rchSteps
             // 
-            this.rchSteps.Location = new System.Drawing.Point(464, 172);
+            this.rchSteps.Location = new System.Drawing.Point(464, 182);
             this.rchSteps.Name = "rchSteps";
-            this.rchSteps.Size = new System.Drawing.Size(492, 230);
+            this.rchSteps.Size = new System.Drawing.Size(492, 220);
             this.rchSteps.TabIndex = 16;
             this.rchSteps.Text = "";
             // 
             // chkIsFavorited
             // 
             this.chkIsFavorited.AutoSize = true;
-            this.chkIsFavorited.Location = new System.Drawing.Point(822, 110);
+            this.chkIsFavorited.Location = new System.Drawing.Point(822, 99);
             this.chkIsFavorited.Name = "chkIsFavorited";
             this.chkIsFavorited.Size = new System.Drawing.Size(134, 32);
             this.chkIsFavorited.TabIndex = 15;
@@ -84,7 +85,7 @@
             // 
             // btnImageSelector
             // 
-            this.btnImageSelector.Location = new System.Drawing.Point(464, 94);
+            this.btnImageSelector.Location = new System.Drawing.Point(464, 83);
             this.btnImageSelector.Name = "btnImageSelector";
             this.btnImageSelector.Size = new System.Drawing.Size(241, 63);
             this.btnImageSelector.TabIndex = 12;
@@ -134,11 +135,21 @@
             this.picIsFavorite.TabStop = false;
             this.picIsFavorite.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(464, 149);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(307, 28);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Press ENTER to indicate new step :";
+            // 
             // FormCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 493);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.rchSteps);
             this.Controls.Add(this.chkIsFavorited);
@@ -175,5 +186,6 @@
         private TextBox txtRecipeName;
         private OpenFileDialog openFileDialog1;
         private PictureBox picIsFavorite;
+        private Label label2;
     }
 }

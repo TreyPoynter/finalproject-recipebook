@@ -18,11 +18,10 @@ namespace DigitalCookbook
         public FormEdit(Recipe recipeToEdit)
         {
             recipeDB = new RecipeContext();
-            InitializeComponent();
             _recipe = recipeToEdit;
             recipeImage = recipeToEdit.ByteArrayToImage();
             recipeID = recipeToEdit.RecipeID;
-
+            InitializeComponent();
             Point pos = picIsFavorite.Parent.PointToScreen(picIsFavorite.Location);
             pos = picRecipeImage.PointToClient(pos);
             picIsFavorite.Parent = picRecipeImage;
