@@ -89,7 +89,6 @@ namespace DigitalCookbook
                 ++_currentStep;
                 DisplayStep();
             }
-
         }
         private void PreviousStep()
         {

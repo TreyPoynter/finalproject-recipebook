@@ -17,7 +17,6 @@ namespace DigitalCookbook
             recipeDb = new RecipeContext();
             foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
-
             DisplayRecipeCards();
         }
         public FormRecipes(RecipeCard newCard)
