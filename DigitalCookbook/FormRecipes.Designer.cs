@@ -38,6 +38,7 @@
             // 
             // btnCreate
             // 
+            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreate.Location = new System.Drawing.Point(446, 38);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(185, 60);
@@ -57,6 +58,7 @@
             // chkOnlyFavorites
             // 
             this.chkOnlyFavorites.AutoSize = true;
+            this.chkOnlyFavorites.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkOnlyFavorites.Location = new System.Drawing.Point(712, 53);
             this.chkOnlyFavorites.Name = "chkOnlyFavorites";
             this.chkOnlyFavorites.Size = new System.Drawing.Size(208, 32);

@@ -32,7 +32,7 @@
             this.picIsFavorite = new System.Windows.Forms.PictureBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.btnRepeatStep = new System.Windows.Forms.Button();
+            this.btnPreviousStep = new System.Windows.Forms.Button();
             this.btnNextStep = new System.Windows.Forms.Button();
             this.rtbSteps = new System.Windows.Forms.RichTextBox();
             this.lblRecipeName = new System.Windows.Forms.Label();
@@ -75,16 +75,16 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnRepeatStep
+            // btnPreviousStep
             // 
-            this.btnRepeatStep.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRepeatStep.Location = new System.Drawing.Point(464, 212);
-            this.btnRepeatStep.Name = "btnRepeatStep";
-            this.btnRepeatStep.Size = new System.Drawing.Size(205, 72);
-            this.btnRepeatStep.TabIndex = 15;
-            this.btnRepeatStep.Text = "Repeat Step";
-            this.btnRepeatStep.UseVisualStyleBackColor = true;
-            this.btnRepeatStep.Click += new System.EventHandler(this.btnRepeatStep_Click);
+            this.btnPreviousStep.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPreviousStep.Location = new System.Drawing.Point(464, 212);
+            this.btnPreviousStep.Name = "btnPreviousStep";
+            this.btnPreviousStep.Size = new System.Drawing.Size(205, 72);
+            this.btnPreviousStep.TabIndex = 15;
+            this.btnPreviousStep.Text = "Previous Step";
+            this.btnPreviousStep.UseVisualStyleBackColor = true;
+            this.btnPreviousStep.Click += new System.EventHandler(this.btnPreviousStep_Click);
             // 
             // btnNextStep
             // 
@@ -129,6 +129,7 @@
             // chkEnableTTS
             // 
             this.chkEnableTTS.AutoSize = true;
+            this.chkEnableTTS.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkEnableTTS.Location = new System.Drawing.Point(733, 290);
             this.chkEnableTTS.Name = "chkEnableTTS";
             this.chkEnableTTS.Size = new System.Drawing.Size(223, 32);
@@ -140,6 +141,7 @@
             // chkEnableSpeechRec
             // 
             this.chkEnableSpeechRec.AutoSize = true;
+            this.chkEnableSpeechRec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkEnableSpeechRec.Location = new System.Drawing.Point(686, 328);
             this.chkEnableSpeechRec.Name = "chkEnableSpeechRec";
             this.chkEnableSpeechRec.Size = new System.Drawing.Size(270, 32);
@@ -157,7 +159,7 @@
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnRepeatStep);
+            this.Controls.Add(this.btnPreviousStep);
             this.Controls.Add(this.btnNextStep);
             this.Controls.Add(this.rtbSteps);
             this.Controls.Add(this.lblRecipeName);
@@ -182,7 +184,7 @@
         private PictureBox picIsFavorite;
         private Button btnEdit;
         private Button btnBack;
-        private Button btnRepeatStep;
+        private Button btnPreviousStep;
         private Button btnNextStep;
         private RichTextBox rtbSteps;
         private Label lblRecipeName;

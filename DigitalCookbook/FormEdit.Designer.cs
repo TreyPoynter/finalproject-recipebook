@@ -55,6 +55,7 @@
             // 
             // rchSteps
             // 
+            this.rchSteps.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.rchSteps.Location = new System.Drawing.Point(464, 121);
             this.rchSteps.Name = "rchSteps";
             this.rchSteps.Size = new System.Drawing.Size(492, 188);
@@ -64,6 +65,7 @@
             // chkIsFavorited
             // 
             this.chkIsFavorited.AutoSize = true;
+            this.chkIsFavorited.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkIsFavorited.Location = new System.Drawing.Point(822, 68);
             this.chkIsFavorited.Name = "chkIsFavorited";
             this.chkIsFavorited.Size = new System.Drawing.Size(134, 32);
@@ -74,6 +76,7 @@
             // 
             // btnSaveChanges
             // 
+            this.btnSaveChanges.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSaveChanges.Location = new System.Drawing.Point(464, 329);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(492, 73);
@@ -84,6 +87,7 @@
             // 
             // btnImageSelector
             // 
+            this.btnImageSelector.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnImageSelector.Location = new System.Drawing.Point(464, 52);
             this.btnImageSelector.Name = "btnImageSelector";
             this.btnImageSelector.Size = new System.Drawing.Size(241, 63);
@@ -113,6 +117,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.Location = new System.Drawing.Point(464, 408);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(492, 73);

@@ -33,7 +33,7 @@ namespace DigitalCookbook
             picIsFavorite.BackColor = Color.Transparent;
             Text = $"Digital Cookbook - {_recipe.RecipeName}";
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
-            choices.Add(new string[] { "next", "repeat" });
+            choices.Add(new string[] { "next", "previous" });
         }
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -58,9 +58,9 @@ namespace DigitalCookbook
         {
              NextStep();
         }
-        private void btnRepeatStep_Click(object sender, EventArgs e)
+        private void btnPreviousStep_Click(object sender, EventArgs e)
         {
-            RepeatStep();
+            PreviousStep();
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -103,7 +103,7 @@ namespace DigitalCookbook
             }
 
         }
-        private void RepeatStep()
+        private void PreviousStep()
         {
             if (_currentStep > 0)
             {
@@ -156,10 +156,12 @@ namespace DigitalCookbook
                 case "next":
                     NextStep();
                     break;
-                case "repeat":
-                    RepeatStep();
+                case "previous":
+                    PreviousStep();
                     break;
             }
         }
+
+        
     }
 }
