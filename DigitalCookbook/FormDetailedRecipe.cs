@@ -33,15 +33,12 @@ namespace DigitalCookbook
             picIsFavorite.BackColor = Color.Transparent;
             Text = $"Digital Cookbook - {_recipe.RecipeName}";
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
-            choices.Add(new string[] { "next", "previous" });
+            choices.Add(new string[] { "next", "previous", "repeat" });
         }
         private void FormDetailedRecipe_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (xButton)
-            {
                 Application.Exit();
-            }
-                
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -54,14 +51,8 @@ namespace DigitalCookbook
             speechSyn.Dispose();
             Close();
         }
-        private void btnNextStep_Click(object sender, EventArgs e)
-        {
-             NextStep();
-        }
-        private void btnPreviousStep_Click(object sender, EventArgs e)
-        {
-            PreviousStep();
-        }
+        private void btnNextStep_Click(object sender, EventArgs e) => NextStep();
+        private void btnPreviousStep_Click(object sender, EventArgs e) => PreviousStep();
         private void btnEdit_Click(object sender, EventArgs e)
         {
             FormEdit editForm = new FormEdit(_recipe);
@@ -78,10 +69,7 @@ namespace DigitalCookbook
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
             else
-            {
                 speechSyn.SpeakAsyncCancelAll();
-
-            }
         }
         private void chkEnableSpeechRec_CheckedChanged(object sender, EventArgs e)
         {
@@ -159,9 +147,10 @@ namespace DigitalCookbook
                 case "previous":
                     PreviousStep();
                     break;
+                case "repeat":
+                    DisplayStep();
+                    break;
             }
         }
-
-        
     }
 }

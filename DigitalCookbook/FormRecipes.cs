@@ -50,28 +50,8 @@ namespace DigitalCookbook
         {
             Application.Exit();
         }
-        private void txtSearchRecipe_TextChanged(object sender, EventArgs e)
-        {
-            if (txtSearchRecipe.Text.Trim() != String.Empty && chkOnlyFavorites.Checked)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim()) && r.IsFavorited).ToList();
-            else if (txtSearchRecipe.Text != String.Empty)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim())).ToList();
-            else
-                foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
-            DisplayRecipeCards();
-        }
-        private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e)
-        {
-            if (txtSearchRecipe.Text.Trim() != String.Empty && chkOnlyFavorites.Checked)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim()) && r.IsFavorited).ToList();
-            else if (chkOnlyFavorites.Checked)
-                foundRecipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
-            else if (txtSearchRecipe.Text != String.Empty)
-                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim())).ToList();
-            else
-                foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
-            DisplayRecipeCards();
-        }
+        private void txtSearchRecipe_TextChanged(object sender, EventArgs e) => SearchRecipes();
+        private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e) => SearchRecipes();
         private void RecipeCard_Click(object sender, EventArgs e)
         {
             RecipeCard clickedCard = (RecipeCard)sender;
@@ -95,6 +75,18 @@ namespace DigitalCookbook
             {
                 AddRecipeCard(recipe.CreateRecipeCard());
             }
+        }
+        private void SearchRecipes()
+        {
+            if (txtSearchRecipe.Text.Trim() != String.Empty && chkOnlyFavorites.Checked)
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim()) && r.IsFavorited).ToList();
+            else if (chkOnlyFavorites.Checked)
+                foundRecipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
+            else if (txtSearchRecipe.Text != String.Empty)
+                foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim())).ToList();
+            else
+                foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
+            DisplayRecipeCards();
         }
     }
 }
