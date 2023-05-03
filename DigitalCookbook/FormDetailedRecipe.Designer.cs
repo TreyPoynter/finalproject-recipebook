@@ -39,6 +39,7 @@
             this.picRecipeImage = new System.Windows.Forms.PictureBox();
             this.chkEnableTTS = new System.Windows.Forms.CheckBox();
             this.chkEnableSpeechRec = new System.Windows.Forms.CheckBox();
+            this.btnRepeat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).BeginInit();
             this.SuspendLayout();
@@ -150,11 +151,24 @@
             this.chkEnableSpeechRec.UseVisualStyleBackColor = true;
             this.chkEnableSpeechRec.CheckedChanged += new System.EventHandler(this.chkEnableSpeechRec_CheckedChanged);
             // 
+            // btnRepeat
+            // 
+            this.btnRepeat.BackgroundImage = global::DigitalCookbook.Images.repeat;
+            this.btnRepeat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRepeat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRepeat.Location = new System.Drawing.Point(675, 212);
+            this.btnRepeat.Name = "btnRepeat";
+            this.btnRepeat.Size = new System.Drawing.Size(79, 72);
+            this.btnRepeat.TabIndex = 21;
+            this.btnRepeat.UseVisualStyleBackColor = true;
+            this.btnRepeat.Click += new System.EventHandler(this.btnRepeat_Click);
+            // 
             // FormDetailedRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 493);
+            this.Controls.Add(this.btnRepeat);
             this.Controls.Add(this.chkEnableTTS);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.btnEdit);
@@ -192,5 +206,6 @@
         private PictureBox picRecipeImage;
         private CheckBox chkEnableTTS;
         private CheckBox chkEnableSpeechRec;
+        private Button btnRepeat;
     }
 }

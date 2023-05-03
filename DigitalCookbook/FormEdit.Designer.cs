@@ -38,6 +38,7 @@
             this.txtRecipeName = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picIsFavorite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRecipeImage)).BeginInit();
             this.SuspendLayout();
@@ -56,9 +57,9 @@
             // rchSteps
             // 
             this.rchSteps.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.rchSteps.Location = new System.Drawing.Point(464, 121);
+            this.rchSteps.Location = new System.Drawing.Point(464, 149);
             this.rchSteps.Name = "rchSteps";
-            this.rchSteps.Size = new System.Drawing.Size(492, 188);
+            this.rchSteps.Size = new System.Drawing.Size(492, 174);
             this.rchSteps.TabIndex = 25;
             this.rchSteps.Text = "";
             // 
@@ -130,11 +131,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(464, 118);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(307, 28);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Press ENTER to indicate new step :";
+            // 
             // FormEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 493);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.picIsFavorite);
             this.Controls.Add(this.rchSteps);
@@ -169,5 +180,6 @@
         private TextBox txtRecipeName;
         private Button btnDelete;
         private OpenFileDialog openFileDialog1;
+        private Label label2;
     }
 }

@@ -14,8 +14,16 @@ namespace DigitalCookbook
         public FormRecipes()
         {
             InitializeComponent();
-            recipeDb = new RecipeContext();
-            foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
+            try
+            {
+                recipeDb = new RecipeContext();
+                foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error displaying recipes");
+            }
+            
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
             DisplayRecipeCards();
         }
@@ -68,9 +76,7 @@ namespace DigitalCookbook
         {
             floRecipeCards.Controls.Clear();
             foreach (Recipe recipe in foundRecipes)
-            {
                 AddRecipeCard(recipe.CreateRecipeCard());
-            }
         }
         private void SearchRecipes()
         {

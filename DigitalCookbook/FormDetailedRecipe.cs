@@ -31,6 +31,7 @@ namespace DigitalCookbook
             picIsFavorite.Parent = picRecipeImage;
             picIsFavorite.Location = pos;
             picIsFavorite.BackColor = Color.Transparent;
+            btnRepeat.Enabled = enabledTTS;
             Text = $"Digital Cookbook - {_recipe.RecipeName}";
             SendMessage(Handle, WM_SETICON, ICON_BIG, Icons.cookbook.Handle);
             choices.Add(new string[] { "next", "previous", "repeat" });
@@ -51,6 +52,7 @@ namespace DigitalCookbook
             speechSyn.Dispose();
             Close();
         }
+        private void btnRepeat_Click(object sender, EventArgs e) => DisplayStep();
         private void btnNextStep_Click(object sender, EventArgs e) => NextStep();
         private void btnPreviousStep_Click(object sender, EventArgs e) => PreviousStep();
         private void btnEdit_Click(object sender, EventArgs e)
@@ -65,6 +67,7 @@ namespace DigitalCookbook
         private void chkEnableTTS_CheckedChanged(object sender, EventArgs e)
         {
             enabledTTS = chkEnableTTS.Checked;
+            btnRepeat.Enabled = chkEnableTTS.Checked;
 
             if (enabledTTS)
                 TextToSpeech(rtbSteps.Text);
@@ -147,10 +150,11 @@ namespace DigitalCookbook
                     PreviousStep();
                     break;
                 case "repeat":
-                    speechSyn.SpeakAsyncCancelAll();
-                    TextToSpeech(rtbSteps.Text);
+                    DisplayStep();
                     break;
             }
         }
+
+        
     }
 }
