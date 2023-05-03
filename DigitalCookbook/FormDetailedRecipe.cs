@@ -147,7 +147,8 @@ namespace DigitalCookbook
                     PreviousStep();
                     break;
                 case "repeat":
-                    DisplayStep();
+                    speechSyn.SpeakAsyncCancelAll();
+                    TextToSpeech(rtbSteps.Text);
                     break;
             }
         }

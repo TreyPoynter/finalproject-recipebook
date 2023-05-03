@@ -45,10 +45,7 @@ namespace DigitalCookbook
             formCreate.Show();
             Hide();
         }
-        private void FormRecipes_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
+        private void FormRecipes_FormClosing(object sender, FormClosingEventArgs e) => Application.Exit();
         private void txtSearchRecipe_TextChanged(object sender, EventArgs e) => SearchRecipes();
         private void chkOnlyFavorites_CheckedChanged(object sender, EventArgs e) => SearchRecipes();
         private void RecipeCard_Click(object sender, EventArgs e)
@@ -81,7 +78,7 @@ namespace DigitalCookbook
                 foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim()) && r.IsFavorited).ToList();
             else if (chkOnlyFavorites.Checked)
                 foundRecipes = recipeDb.Recipes.Where(r => r.IsFavorited).ToList();
-            else if (txtSearchRecipe.Text != String.Empty)
+            else if (!String.IsNullOrWhiteSpace(txtSearchRecipe.Text))
                 foundRecipes = recipeDb.Recipes.Where(r => r.RecipeName.Contains(txtSearchRecipe.Text.Trim())).ToList();
             else
                 foundRecipes = recipeDb.Recipes.Select(r => r).ToList();
