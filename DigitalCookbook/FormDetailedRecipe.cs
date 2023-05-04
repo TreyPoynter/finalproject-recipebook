@@ -154,7 +154,5 @@ namespace DigitalCookbook
                     break;
             }
         }
-
-        
     }
 }
