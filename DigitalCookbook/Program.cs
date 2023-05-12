@@ -1,3 +1,5 @@
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 namespace DigitalCookbook
 {
     internal static class Program
