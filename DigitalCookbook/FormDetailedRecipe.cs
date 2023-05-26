@@ -19,9 +19,9 @@ namespace DigitalCookbook
         private readonly Recipe _recipe;
         public FormDetailedRecipe(Recipe selectedRecipe)
         {
-            speechSyn = new SpeechSynthesizer();
-            recEngine = new SpeechRecognitionEngine();
-            choices = new Choices();
+            speechSyn = new();
+            recEngine = new();
+            choices = new();
             InitializeComponent();
             _currentStep = 0;
             _recipe = selectedRecipe;
@@ -44,7 +44,7 @@ namespace DigitalCookbook
         private void btnBack_Click(object sender, EventArgs e)
         {
             xButton = false;
-            FormRecipes formRecipes = new FormRecipes();
+            FormRecipes formRecipes = new();
             formRecipes.Tag = this;
             formRecipes.StartPosition = FormStartPosition.Manual;
             formRecipes.Location = Location;
